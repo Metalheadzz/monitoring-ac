@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistem Monitoring AC - Msob</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="header glass-panel">
+      <div class="logo">
+        <span class="icon">❄️</span>
+        <h1>Smart <span>AC Monitoring</span></h1>
+      </div>
+      <div class="status-indicator">
+        <select id="room-selector" class="glass-select" style="margin-right: 1rem; display: none;">
+          <option value="Ruang Utama">Ruang Utama</option>
+        </select>
+        <span id="connection-status" class="status-dot disconnected"></span>
+        <span id="connection-text">Connecting...</span>
+        <button id="btn-logout" class="control-btn btn-off"
+          style="padding: 0.4rem 1rem; font-size: 0.8rem; margin-left: 1rem;">Logout</button>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+      <!-- Realtime Section -->
+      <section class="card glass-panel gauge-card">
+        <h2>Suhu Ruangan Realtime</h2>
+        <div class="gauge-container">
+          <svg viewBox="0 0 100 50" class="gauge">
+            <path class="gauge-bg" d="M 10 50 A 40 40 0 0 1 90 50" />
+            <path class="gauge-value" id="gauge-path" d="M 10 50 A 40 40 0 0 1 10 50" stroke-dasharray="125"
+              stroke-dashoffset="125" />
+          </svg>
+          <div class="gauge-text">
+            <span id="current-temp">--</span>
+            <span class="unit">°C</span>
+          </div>
+        </div>
+        <div class="ac-status-text">
+          AC Status: <strong id="ac-state">UNKNOWN</strong>
+        </div>
+      </section>
+
+      <!-- AC Control Section -->
+      <section class="card glass-panel control-card">
+        <h2>Kontrol AC</h2>
+        <p>Kendalikan suhu ruangan dari jarak jauh secara instan.</p>
+        <div class="button-group">
+          <button id="btn-on" class="control-btn btn-on">Turn ON</button>
+          <button id="btn-off" class="control-btn btn-off">Turn OFF</button>
+        </div>
+        <div class="control-feedback" id="control-feedback"></div>
+      </section>
+
+      <!-- History Chart Section -->
+      <section class="card glass-panel chart-card history-card">
+        <div class="card-header"
+          style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
+          <h2>History Suhu InfluxDB</h2>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <input type="date" id="history-date" class="glass-select" title="Pilih Tanggal Spesifik" />
+            <select id="history-range" class="glass-select">
+              <option value="1h">1 Jam Terakhir</option>
+              <option value="24h">24 Jam Terakhir</option>
+              <option value="30d">30 Hari Terakhir</option>
+              <option value="1y">1 Tahun Terakhir</option>
+            </select>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="historyChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Realtime Chart Section -->
+      <section class="card glass-panel chart-card realtime-card">
+        <h2>Grafik Fluktuasi Realtime</h2>
+        <div class="chart-container">
+          <canvas id="realtimeChart"></canvas>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>

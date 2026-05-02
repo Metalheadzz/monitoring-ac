@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+    restart: unless-stopped
+
+  nodered:
+    build: ./nodered
+    container_name: nodered
+    ports:
+      - "1880:1880"
+    volumes:
+      - nodered_data:/data
+      - ./nodered/flows.json:/data/flows.json
+    environment:
+      - TZ=Asia/Jakarta
+      - INFLUXDB_TOKEN=yr3tJGXch-qnosHeVmts9IEPe0FPn9ptcLMM1H4jFA-CTMaZHJ8vGpTrIInLuNYr_IP2FMJ3mm0DXIp72-P7vw==
+      - INFLUXDB_URL=http://host.docker.internal:8087
+      - INFLUXDB_ORG=myorg
+      - INFLUXDB_BUCKET=mybucket
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
+  nodered_data:

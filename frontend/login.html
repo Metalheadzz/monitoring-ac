@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Smart AC Monitoring - Msob</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .login-card h2 {
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .input-group input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    #login-error {
+      color: var(--danger);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      min-height: 1.2em;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="header glass-panel" style="justify-content: center;">
+      <div class="logo">
+        <span class="icon">❄️</span>
+        <h1>Smart <span>AC Monitoring - msob</span></h1>
+      </div>
+    </header>
+
+    <main class="login-container">
+      <div class="card glass-panel login-card">
+        <h2>Secure Login</h2>
+        <form id="login-form">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter username" required />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter password" required />
+          </div>
+          <button type="submit" class="control-btn btn-on btn-login">Sign In</button>
+          <div id="login-error">Invalid credentials</div>
+        </form>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="./login.js"></script>
+</body>
+
+</html>

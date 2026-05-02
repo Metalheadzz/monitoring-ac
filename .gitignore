@@ -1,0 +1,28 @@
+# Node modules
+node_modules/
+dist/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Node-RED
+nodered/data/
+!nodered/data/flows.json
+!nodered/data/flows_cred.json
+!nodered/data/settings.js
+
+# InfluxDB
+influxdb_data/
+
+# Mosquitto
+mosquitto/log/
+mosquitto/data/
+
+# OS generated files
+.DS_Store
+Thumbs.db
