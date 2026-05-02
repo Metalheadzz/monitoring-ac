@@ -42,8 +42,7 @@ python api.py
 
 
 
-\#Jalankan Simulator AC (Opsional, jika ingin ada data suhu buatan)
-
+\#Jalankan Simulator AC
 python simulator.py
 
 
